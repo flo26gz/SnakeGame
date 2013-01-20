@@ -21,6 +21,7 @@ namespace Snake
             state = false;
         }
 
+        /* Getters and setters */
         public int X
         {
             get { return x; }

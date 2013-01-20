@@ -12,57 +12,88 @@ namespace Snake
         private Prey prey = new Prey();
         private int SIZE_GAME_X;
         private int SIZE_GAME_Y;
-        int direction = 0;
+        //horizontal size of a grid
         private const int GRID_X = 16;
+        //vertical size of a grid
         private const int GRID_Y = 14;
+        //number max of grid
+        private int max_x;
+        private int max_y;
+        Random random;
+        //direction
+        int direction = 0;
+        //Constants for the direction
         private const int DIR_DOWN = 0;
         private const int DIR_UP = 1;
         private const int DIR_LEFT = 2;
         private const int DIR_RIGHT = 3;
+        //score
         private int score;
+        //Game over
+        private Boolean end;
+
+       
 
         public Game(int sizex, int sizey)
         {
+           random = new Random();
+            //width of the game 
             this.SIZE_GAME_X1 = sizex;
+            //height of the game
             this.SIZE_GAME_Y1 = sizey;
+            
+            max_x = SIZE_GAME_X1 / GRID_X;
+            max_y = SIZE_GAME_Y1 / GRID_Y;
+            end = false;
             score = 0;
+
             snake.Clear();
-            SnakePart head = new SnakePart(10,10,GRID_X,GRID_Y);
+
+            //Head of the snake
+            SnakePart head = new SnakePart(random.Next(0, max_x), random.Next(0, max_y), GRID_X, GRID_Y);
+            //add the head to the List
             snake.Add(head);
+            //create a prey
             createPrey();
 
         }
 
         public void createPrey()
         {
-            int max_x = SIZE_GAME_X1 / GRID_X1;
-            int max_y = SIZE_GAME_Y1 / GRID_Y1;
-            Random random = new Random();
+            /* Create a random prey*/
             prey = new Prey();
             prey.X = random.Next(0, max_x);
             prey.Y = random.Next(0, max_y);
-            prey.State = false;
+        
         }
 
         public void check()
         {
+            //start by the last part of the snake because the last link will have the location of the link in front of him
             for (int i = snake.Count - 1; i >= 0; i--)
             {
+                //if it is the head
                 if (i == 0)
                 {
-
-
 
                         if (direction ==DIR_DOWN1) Snake[i].Y++;
                         if (direction == DIR_UP1) Snake[i].Y--;
                         if (direction == DIR_LEFT1) Snake[i].X--;
                         if (direction == DIR_RIGHT1) Snake[i].X++;
-                    
+
+                        if (snake[i].X < 0 || snake[i].X >= max_x || snake[i].Y < 0 || snake[i].Y >= max_y)    end = true;
+                        // we go through all the snake to check if the location head is equal to the location of another link of the snake
+                        for (int j = 1; j < snake.Count; j++) if (snake[i].X == snake[j].X && snake[i].Y == snake[j].Y)   end = true;
+
+                    //If the snake has eaten a prey
                     if (snake[i].X == prey.X && snake[i].Y == prey.Y)
                     {
+                        //We create a new part whose the location is the last link of the snake
                         SnakePart part = new SnakePart(snake[snake.Count - 1].X, snake[snake.Count - 1].Y, GRID_X, GRID_Y);
                         snake.Add(part);
+                        //create a new prey
                         createPrey();
+                        //increase the score
                         score++;
 
                     }
@@ -76,7 +107,7 @@ namespace Snake
             }
         }
 
-
+        /*Getters and Setters*/
         internal List<SnakePart> Snake
         {
             get { return snake; }
@@ -142,6 +173,12 @@ namespace Snake
         {
             get { return direction; }
             set { direction = value; }
-        } 
+        }
+
+        public Boolean End
+        {
+            get { return end; }
+            set { end = value; }
+        }
     }
 }

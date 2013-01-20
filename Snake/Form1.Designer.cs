@@ -37,6 +37,7 @@ namespace Snake
             this.rulesButton = new System.Windows.Forms.Button();
             this.teamLabel2 = new System.Windows.Forms.Label();
             this.teamLabel1 = new System.Windows.Forms.Label();
+            this.scoreLabel = new System.Windows.Forms.Label();
             this.SnakeTitleLabel = new System.Windows.Forms.Label();
             this.imgSnakePanel = new System.Windows.Forms.Panel();
             this.pBoxGame = new System.Windows.Forms.PictureBox();
@@ -136,6 +137,20 @@ namespace Snake
             this.SnakeTitleLabel.TabIndex = 0;
             this.SnakeTitleLabel.Text = "Snake";
             // 
+            // scoreLabel
+            // 
+            this.scoreLabel.AutoSize = true;
+            this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
+            this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreLabel.ForeColor = System.Drawing.Color.Green;
+            this.scoreLabel.Location = new System.Drawing.Point(28, 550);
+            this.scoreLabel.Name = "scoreLabel";
+            this.scoreLabel.Size = new System.Drawing.Size(220, 29);
+            this.scoreLabel.TabIndex = 2;
+            this.scoreLabel.Text = "Score : 0";
+            this.scoreLabel.Visible = true;
+            
+            // 
             // imgSnakePanel
             // 
             this.imgSnakePanel.BackColor = System.Drawing.Color.Transparent;
@@ -160,6 +175,7 @@ namespace Snake
             // 
             this.mainGamePanel.BackColor = System.Drawing.Color.Azure;
             this.mainGamePanel.Controls.Add(this.pBoxGame);
+            this.mainGamePanel.Controls.Add(this.scoreLabel);
             this.mainGamePanel.Location = new System.Drawing.Point(-1, 0);
             this.mainGamePanel.Name = "mainGamePanel";
             this.mainGamePanel.Size = new System.Drawing.Size(626, 594);
@@ -194,11 +210,13 @@ namespace Snake
         private System.Windows.Forms.Panel mainGamePanel;
         private System.Windows.Forms.Label teamLabel2;
         private System.Windows.Forms.Label teamLabel1;
+        private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Button optionButton;
         private System.Windows.Forms.Button rulesButton;
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pBoxGame;
+        private DialogResult res;
 
 
         }

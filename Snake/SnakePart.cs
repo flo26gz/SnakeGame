@@ -22,7 +22,7 @@ namespace Snake
             this.sizeY = sizeY;
             
         }
-
+        /* Getters and setters */
         public int X
         {
             get { return x; }
