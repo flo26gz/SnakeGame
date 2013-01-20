@@ -24,10 +24,9 @@ namespace Snake
         {
          Controls.Clear();
          Controls.Add(this.mainGamePanel);
+         game = new Game();
          this.timer1.Enabled = true;
          this.timer1.Start();
-         game = new Game();
-
          //this.playButton.Focus();
 
         }
@@ -39,6 +38,13 @@ namespace Snake
             //if ((x+165) == this.mainIntroPanel.Width) x = 0;
             //if (y == SIZE_Y) y = 0;
             //this.x++;
+            for (int i = 0; i < game.Snake.Count; i++)
+            {
+                if (game.Snake[i].Dir == game.DIR_DOWN1) game.Snake[i].Y++;
+                if (game.Snake[i].Dir == game.DIR_UP1) game.Snake[i].Y--;
+                if (game.Snake[i].Dir == game.DIR_LEFT1) game.Snake[i].X--;
+                if (game.Snake[i].Dir == game.DIR_RIGHT1) game.Snake[i].X++;
+            }
             this.pBoxGame.Invalidate();
            
             
@@ -47,10 +53,30 @@ namespace Snake
         {
             switch (e.KeyChar)
             {
-                case (char)122: this.y--; break;
-                case (char)115: this.y++; break;
-                case (char)113: this.x--; break;
-                case (char)100: this.x++; break;
+                case (char)122:
+                    for (int i = 0; i < game.Snake.Count; i++)
+                    {
+                        game.Snake[i].Dir = game.DIR_UP1;
+                    }
+                break;
+                case (char)115: 
+                for (int i = 0; i < game.Snake.Count; i++)
+                {
+                    game.Snake[i].Dir = game.DIR_DOWN1;
+                }
+                break;
+                case (char)113: 
+                for (int i = 0; i < game.Snake.Count; i++)
+                {
+                    game.Snake[i].Dir = game.DIR_LEFT1;
+                }
+                break;//gauche
+                case (char)100: 
+                for (int i = 0; i < game.Snake.Count; i++)
+                {
+                    game.Snake[i].Dir = game.DIR_RIGHT1;
+                }
+                break;//droite
              
 
             }
