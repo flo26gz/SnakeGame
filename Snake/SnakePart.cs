@@ -35,6 +35,7 @@ namespace Snake
             set { y = value; }
         }
 
+
         public int SizeX
         {
             get { return sizeX; }
