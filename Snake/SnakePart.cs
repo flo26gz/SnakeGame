@@ -41,7 +41,6 @@ namespace Snake
             set { sizeX = value; }
         }
 
-
         public int SizeY
         {
             get { return sizeY; }
