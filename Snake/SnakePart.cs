@@ -11,16 +11,16 @@ namespace Snake
         private int y;
         private int sizeX;
         private int sizeY;
-        private int dir;
+    
 
-        public SnakePart(int x, int y, int sizeX, int sizeY, int dir)
+        public SnakePart(int x, int y, int sizeX, int sizeY)
         {
-            dir = 0;
+           
             this.x = x;
             this.y = y;
             this.sizeX = sizeX;
             this.sizeY = sizeY;
-            this.dir = dir;
+            
         }
 
         public int X
@@ -46,12 +46,6 @@ namespace Snake
         {
             get { return sizeY; }
             set { sizeY = value; }
-        }
-
-        public int Dir
-        {
-            get { return dir; }
-            set { dir = value; }
         }
         
 

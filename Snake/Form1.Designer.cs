@@ -200,9 +200,7 @@ namespace Snake
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pBoxGame;
 
-        int x = 0, y = 0;
-        private int SIZE_X = 500;
-        private int SIZE_Y = 500;
+
         }
     
 }

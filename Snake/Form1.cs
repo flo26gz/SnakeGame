@@ -24,27 +24,18 @@ namespace Snake
         {
          Controls.Clear();
          Controls.Add(this.mainGamePanel);
-         game = new Game();
+         game = new Game(pBoxGame.Size.Width,pBoxGame.Size.Height);
          this.timer1.Enabled = true;
          this.timer1.Start();
-         //this.playButton.Focus();
+         
 
         }
 
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //this.playButton.Location = new System.Drawing.Point(x, y);
-            //if ((x+165) == this.mainIntroPanel.Width) x = 0;
-            //if (y == SIZE_Y) y = 0;
-            //this.x++;
-            for (int i = 0; i < game.Snake.Count; i++)
-            {
-                if (game.Snake[i].Dir == game.DIR_DOWN1) game.Snake[i].Y++;
-                if (game.Snake[i].Dir == game.DIR_UP1) game.Snake[i].Y--;
-                if (game.Snake[i].Dir == game.DIR_LEFT1) game.Snake[i].X--;
-                if (game.Snake[i].Dir == game.DIR_RIGHT1) game.Snake[i].X++;
-            }
+   
+            game.check();
             this.pBoxGame.Invalidate();
            
             
@@ -54,28 +45,25 @@ namespace Snake
             switch (e.KeyChar)
             {
                 case (char)122:
-                    for (int i = 0; i < game.Snake.Count; i++)
-                    {
-                        game.Snake[i].Dir = game.DIR_UP1;
-                    }
+                 
+                        if (game.Snake.Count < 2 || game.Snake[0].Y == game.Snake[1].Y)
+                        game.Direction = game.DIR_UP1;
+                    
                 break;
-                case (char)115: 
-                for (int i = 0; i < game.Snake.Count; i++)
-                {
-                    game.Snake[i].Dir = game.DIR_DOWN1;
-                }
+                case (char)115:
+                if (game.Snake.Count < 2 || game.Snake[0].Y == game.Snake[1].Y)
+                    game.Direction = game.DIR_DOWN1;
+                
                 break;
-                case (char)113: 
-                for (int i = 0; i < game.Snake.Count; i++)
-                {
-                    game.Snake[i].Dir = game.DIR_LEFT1;
-                }
+                case (char)113:
+                if (game.Snake.Count < 2 || game.Snake[0].X == game.Snake[1].X)
+                    game.Direction = game.DIR_LEFT1;
+                
                 break;//gauche
-                case (char)100: 
-                for (int i = 0; i < game.Snake.Count; i++)
-                {
-                    game.Snake[i].Dir = game.DIR_RIGHT1;
-                }
+                case (char)100:
+                if (game.Snake.Count < 2 || game.Snake[0].X == game.Snake[1].X)
+                    game.Direction = game.DIR_RIGHT1;
+                
                 break;//droite
              
 
@@ -84,11 +72,15 @@ namespace Snake
         private void pBoxGame_Paint(object sender, PaintEventArgs e)
         {
             Graphics pBox = e.Graphics;
+            Brush colorprey = Brushes.Yellow;
             for (int i = 0; i < game.Snake.Count; i++)
             {
                 Brush color = Brushes.Black;
+                pBox.DrawString("coord :  " + game.Snake[i].X, this.Font, Brushes.White, new PointF(4*i, 4*i));
                 pBox.FillRectangle(color, new Rectangle(game.Snake[i].X * game.GRID_X1, game.Snake[i].Y * game.GRID_Y1, game.GRID_X1, game.GRID_Y1));
             }
+
+            pBox.FillEllipse(colorprey, game.Prey.X * game.GRID_X1, game.Prey.Y * game.GRID_Y1, game.GRID_X1, game.GRID_Y1);
             
         }
 
