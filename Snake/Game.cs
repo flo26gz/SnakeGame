@@ -8,6 +8,8 @@ namespace Snake
     class Game
     {
 
+        //caca prout
+
         private List<SnakePart> snake = new List<SnakePart>();
         private Prey prey = new Prey();
         private int SIZE_GAME_X;
