@@ -52,6 +52,7 @@ namespace Snake
             {
                 this.timer1.Stop();
                 this.res = MessageBox.Show("You loose ! Do you want to start a new game ?", "Game Over", MessageBoxButtons.YesNo);
+
                 if (this.res == DialogResult.Yes)
                 {
                     Controls.Clear();
