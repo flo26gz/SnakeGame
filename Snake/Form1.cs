@@ -27,7 +27,8 @@ namespace Snake
          //add the game panel to the window
          Controls.Add(this.mainGamePanel);
          //start a game
-         game = new Game(pBoxGame.Size.Width,pBoxGame.Size.Height);
+         
+         game = new Game(snakePanel.Size.Width,snakePanel.Size.Height, snakePanel);
          //enable and start the timer
          this.timer1.Enabled = true;
          this.timer1.Start();
@@ -41,9 +42,12 @@ namespace Snake
             //update the snake
             game.check();
             //repaint the pictureBox
-            this.pBoxGame.Invalidate();
+            this.snakePanel.Refresh();
+            //repaint the game Panel
+            this.mainGamePanel.Refresh();
             //refresh the score
             this.scoreLabel.Text = "Score : " + game.Score;
+        
             if (game.End == true)
             {
                 this.timer1.Stop();
@@ -51,12 +55,14 @@ namespace Snake
                 if (this.res == DialogResult.Yes)
                 {
                     Controls.Clear();
-                    
+                    game.Va.PBox.Hide();
+                    game.clearSnake();
                     Controls.Add(this.mainIntroPanel);
 
                 }
                 else Application.Exit();
             }
+             
             
         }
         void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -89,24 +95,6 @@ namespace Snake
 
             }
         }
-        private void pBoxGame_Paint(object sender, PaintEventArgs e)
-        {
-            //object for drawing
-            Graphics pBox = e.Graphics;
-            Brush colorprey = Brushes.Yellow;
-            for (int i = 0; i < game.Snake.Count; i++)
-            {
-                Brush color = Brushes.Black;
-               //draw a black rectangle for the snake part
-                pBox.FillRectangle(color, new Rectangle(game.Snake[i].X * game.GRID_X1, game.Snake[i].Y * game.GRID_Y1, game.GRID_X1, game.GRID_Y1));
-            }
-            //draw an ellipse for the prey
-            pBox.FillEllipse(colorprey, game.Prey.X * game.GRID_X1, game.Prey.Y * game.GRID_Y1, game.GRID_X1, game.GRID_Y1);
-            
-        }
-
-
-
 
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Snake
 {
@@ -10,33 +11,42 @@ namespace Snake
 
 
         private List<SnakePart> snake = new List<SnakePart>();
-        private Prey prey = new Prey();
+        private Apple apple = new Apple();
+        private Panel snakePanel;
+
         private int SIZE_GAME_X;
         private int SIZE_GAME_Y;
+
         //horizontal size of a grid
         private const int GRID_X = 16;
         //vertical size of a grid
         private const int GRID_Y = 14;
+
         //number max of grid
         private int max_x;
         private int max_y;
+
         Random random;
+
         //direction
         int direction = 0;
+
         //Constants for the direction
         private const int DIR_DOWN = 0;
         private const int DIR_UP = 1;
         private const int DIR_LEFT = 2;
         private const int DIR_RIGHT = 3;
+
         //score
         private int score;
         //Game over
         private Boolean end;
+        private viewApple va;
+    
 
-       
-
-        public Game(int sizex, int sizey)
+        public Game(int sizex, int sizey, Panel panel)
         {
+           this.snakePanel = panel;
            random = new Random();
             //width of the game 
             this.SIZE_GAME_X1 = sizex;
@@ -45,28 +55,60 @@ namespace Snake
             
             max_x = SIZE_GAME_X1 / GRID_X;
             max_y = SIZE_GAME_Y1 / GRID_Y;
+           
             end = false;
             score = 0;
-
+           
             snake.Clear();
+
+            
 
             //Head of the snake
             SnakePart head = new SnakePart(random.Next(0, max_x), random.Next(0, max_y), GRID_X, GRID_Y);
             //add the head to the List
             snake.Add(head);
+            createSnake(head);
             //create a prey
-            createPrey();
-
+            va = new viewApple(apple);
+            createApple();
+            
+            snakePanel.Controls.Add(va.PBox);
+            
         }
 
-        public void createPrey()
+        public void createApple()
         {
             /* Create a random prey*/
-            prey = new Prey();
-            prey.X = random.Next(0, max_x);
-            prey.Y = random.Next(0, max_y);
+            apple.X = random.Next(0, max_x);
+            apple.Y = random.Next(0, max_y);
+            apple.SizeX = GRID_X;
+            apple.SizeY = GRID_Y;
+         
+            va.PBox.Left = apple.X*16;
+            va.PBox.Top = apple.Y*14;
+            va.PBox.Width = GRID_X;
+            va.PBox.Height = GRID_Y;
+
         
         }
+
+        private void createSnake(SnakePart part)
+        {
+                viewSnakePart vsp = new viewSnakePart(part.X,part.Y,part.SizeX,part.SizeY);
+                part.Vsp = vsp;
+                snakePanel.Controls.Add(vsp.PBox);
+            
+        }
+
+        private void updateSnake(SnakePart p, viewSnakePart vsp)
+        {
+         
+           
+            vsp.PBox.Left = p.X*GRID_X;
+            vsp.PBox.Top= p.Y*GRID_Y;
+
+        }
+
 
         public void check()
         {
@@ -81,19 +123,21 @@ namespace Snake
                         if (direction == DIR_UP1) Snake[i].Y--;
                         if (direction == DIR_LEFT1) Snake[i].X--;
                         if (direction == DIR_RIGHT1) Snake[i].X++;
-
+                        updateSnake(snake[i], snake[i].Vsp);
                         if (snake[i].X < 0 || snake[i].X >= max_x || snake[i].Y < 0 || snake[i].Y >= max_y)    end = true;
                         // we go through all the snake to check if the location head is equal to the location of another link of the snake
                         for (int j = 1; j < snake.Count; j++) if (snake[i].X == snake[j].X && snake[i].Y == snake[j].Y)   end = true;
 
-                    //If the snake has eaten a prey
-                    if (snake[i].X == prey.X && snake[i].Y == prey.Y)
+                        //If the snake has eaten a prey
+                        if (snake[i].X == apple.X && snake[i].Y == apple.Y)
                     {
                         //We create a new part whose the location is the last link of the snake
                         SnakePart part = new SnakePart(snake[snake.Count - 1].X, snake[snake.Count - 1].Y, GRID_X, GRID_Y);
                         snake.Add(part);
+                        createSnake(part);
                         //create a new prey
-                        createPrey();
+                        createApple();
+
                         //increase the score
                         score++;
 
@@ -103,11 +147,16 @@ namespace Snake
                 {
                     snake[i].X = snake[i - 1].X;
                     snake[i].Y = snake[i - 1].Y;
+                    updateSnake(snake[i], snake[i].Vsp);
 
                 }
             }
         }
 
+        public void clearSnake()
+        {
+            for (int i = 0; i < snake.Count; i++) snake[i].Vsp.PBox.Hide();
+        }
         /*Getters and Setters*/
         internal List<SnakePart> Snake
         {
@@ -157,12 +206,7 @@ namespace Snake
             set { SIZE_GAME_Y = value; }
         }
 
-        internal Prey Prey
-        {
-            get { return prey; }
-            set { prey = value; }
-        }
-
+ 
 
         public int Score
         {
@@ -180,6 +224,18 @@ namespace Snake
         {
             get { return end; }
             set { end = value; }
+        }
+
+        internal Apple Apple
+        {
+            get { return apple; }
+            set { apple = value; }
+        }
+
+        internal viewApple Va
+        {
+            get { return va; }
+            set { va = value; }
         }
     }
 }

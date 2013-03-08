@@ -11,6 +11,7 @@ namespace Snake
         private int y;
         private int sizeX;
         private int sizeY;
+        private viewSnakePart vsp;
     
 
         public SnakePart(int x, int y, int sizeX, int sizeY)
@@ -20,6 +21,7 @@ namespace Snake
             this.y = y;
             this.sizeX = sizeX;
             this.sizeY = sizeY;
+            vsp = new viewSnakePart(x, y, sizeX, sizeY);
             
         }
         /* Getters and setters */
@@ -47,7 +49,12 @@ namespace Snake
             get { return sizeY; }
             set { sizeY = value; }
         }
-        
+
+        internal viewSnakePart Vsp
+        {
+            get { return vsp; }
+            set { vsp = value; }
+        }
 
     }
 }

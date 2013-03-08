@@ -40,11 +40,11 @@ namespace Snake
             this.scoreLabel = new System.Windows.Forms.Label();
             this.SnakeTitleLabel = new System.Windows.Forms.Label();
             this.imgSnakePanel = new System.Windows.Forms.Panel();
-            this.pBoxGame = new System.Windows.Forms.PictureBox();
             this.mainGamePanel = new System.Windows.Forms.Panel();
+            this.snakePanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.mainIntroPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxGame)).BeginInit();
+            this.snakePanel.SuspendLayout();
             this.mainGamePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -160,26 +160,24 @@ namespace Snake
             this.imgSnakePanel.Size = new System.Drawing.Size(134, 169);
             this.imgSnakePanel.TabIndex = 7;
             // 
-            // pBoxGame
+            // snakePanel
             // 
-            this.pBoxGame.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.pBoxGame.Location = new System.Drawing.Point(36, 28);
-            this.pBoxGame.Margin = new System.Windows.Forms.Padding(4);
-            this.pBoxGame.Name = "pBoxGame";
-            this.pBoxGame.Size = new System.Drawing.Size(560, 490);
-            this.pBoxGame.TabIndex = 0;
-            this.pBoxGame.TabStop = false;
-            this.pBoxGame.Paint += new System.Windows.Forms.PaintEventHandler(this.pBoxGame_Paint);
+            this.snakePanel.BackColor = System.Drawing.Color.Gray;
+            this.snakePanel.Location = new System.Drawing.Point(-1, 0);
+            this.snakePanel.Name = "snakePanel";
+            this.snakePanel.Size = new System.Drawing.Size(560, 490);
+            this.snakePanel.TabIndex = 0; 
             // 
             // mainGamePanel
             // 
             this.mainGamePanel.BackColor = System.Drawing.Color.Azure;
-            this.mainGamePanel.Controls.Add(this.pBoxGame);
+            this.mainGamePanel.Controls.Add(this.snakePanel);
             this.mainGamePanel.Controls.Add(this.scoreLabel);
             this.mainGamePanel.Location = new System.Drawing.Point(-1, 0);
             this.mainGamePanel.Name = "mainGamePanel";
             this.mainGamePanel.Size = new System.Drawing.Size(626, 594);
             this.mainGamePanel.TabIndex = 0;
+   
             // 
             // timer1
             // 
@@ -196,7 +194,6 @@ namespace Snake
             this.Text = "Snake";
             this.mainIntroPanel.ResumeLayout(false);
             this.mainIntroPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxGame)).EndInit();
             this.mainGamePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -208,6 +205,7 @@ namespace Snake
         private System.Windows.Forms.Label SnakeTitleLabel;
         private System.Windows.Forms.Panel imgSnakePanel;
         private System.Windows.Forms.Panel mainGamePanel;
+        private System.Windows.Forms.Panel snakePanel;
         private System.Windows.Forms.Label teamLabel2;
         private System.Windows.Forms.Label teamLabel1;
         private System.Windows.Forms.Label scoreLabel;
@@ -215,8 +213,8 @@ namespace Snake
         private System.Windows.Forms.Button rulesButton;
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.PictureBox pBoxGame;
         private DialogResult res;
+      
 
 
         }
