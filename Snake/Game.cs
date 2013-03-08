@@ -6,13 +6,16 @@ using System.Windows.Forms;
 
 namespace Snake
 {
+    /*This class represents a game  */
     class Game
     {
 
-
-        private List<SnakePart> snake = new List<SnakePart>();
-        private Apple apple = new Apple();
+        /*variables */
+        private List<SnakePart> snake;
+        private Apple apple;
         private Panel snakePanel;
+        private viewSnake viewSnake;
+        private viewApple viewApple;
 
         private int SIZE_GAME_X;
         private int SIZE_GAME_Y;
@@ -22,8 +25,9 @@ namespace Snake
         //vertical size of a grid
         private const int GRID_Y = 14;
 
-        //number max of grid
+        //number max of horizontal grid
         private int max_x;
+        //number max of vertical grid
         private int max_y;
 
         Random random;
@@ -41,75 +45,62 @@ namespace Snake
         private int score;
         //Game over
         private Boolean end;
-        private viewApple va;
+       
     
-
+        /*Constructor */
         public Game(int sizex, int sizey, Panel panel)
         {
-           this.snakePanel = panel;
+            /*Instantiations */
+            snake = new List<SnakePart>();
+            apple = new Apple();
+            this.snakePanel = panel;
+            viewSnake = new viewSnake(snake,snakePanel);
+           
+
            random = new Random();
-            //width of the game 
-            this.SIZE_GAME_X1 = sizex;
-            //height of the game
-            this.SIZE_GAME_Y1 = sizey;
+
+            //width of snakePanel 
+            this.SIZE_GAME_X = sizex;
+            //height of the snakePanel
+            this.SIZE_GAME_Y = sizey;
             
-            max_x = SIZE_GAME_X1 / GRID_X;
-            max_y = SIZE_GAME_Y1 / GRID_Y;
+            max_x = SIZE_GAME_X / GRID_X;
+            max_y = SIZE_GAME_Y / GRID_Y;
            
             end = false;
             score = 0;
            
+            //clear the list if we do another game
             snake.Clear();
 
-            
-
-            //Head of the snake
+            //We start the game by creating the head of the snake
             SnakePart head = new SnakePart(random.Next(0, max_x), random.Next(0, max_y), GRID_X, GRID_Y);
             //add the head to the List
             snake.Add(head);
-            createSnake(head);
-            //create a prey
-            va = new viewApple(apple);
+            //create the view of the head
+            viewSnake.createViewPart(head);
+            //create food
+            viewApple = new viewApple(apple,snakePanel);
             createApple();
             
-            snakePanel.Controls.Add(va.PBox);
             
         }
 
+        /*function to create an apple */
         public void createApple()
         {
-            /* Create a random prey*/
+            /* Create a random apple*/
             apple.X = random.Next(0, max_x);
             apple.Y = random.Next(0, max_y);
             apple.SizeX = GRID_X;
             apple.SizeY = GRID_Y;
          
-            va.PBox.Left = apple.X*16;
-            va.PBox.Top = apple.Y*14;
-            va.PBox.Width = GRID_X;
-            va.PBox.Height = GRID_Y;
-
+            //change the coordinate of the pictureBox that represents an apple
+            viewApple.updateViewApple();
         
         }
 
-        private void createSnake(SnakePart part)
-        {
-                viewSnakePart vsp = new viewSnakePart(part.X,part.Y,part.SizeX,part.SizeY);
-                part.Vsp = vsp;
-                snakePanel.Controls.Add(vsp.PBox);
-            
-        }
-
-        private void updateSnake(SnakePart p, viewSnakePart vsp)
-        {
-         
-           
-            vsp.PBox.Left = p.X*GRID_X;
-            vsp.PBox.Top= p.Y*GRID_Y;
-
-        }
-
-
+        /*function to test if an something happened or just move the snake */
         public void check()
         {
             //start by the last part of the snake because the last link will have the location of the link in front of him
@@ -123,55 +114,55 @@ namespace Snake
                         if (direction == DIR_UP1) Snake[i].Y--;
                         if (direction == DIR_LEFT1) Snake[i].X--;
                         if (direction == DIR_RIGHT1) Snake[i].X++;
-                        updateSnake(snake[i], snake[i].Vsp);
+
+                        //update snake view 
+                        viewSnake.updateViewSnake();
                         if (snake[i].X < 0 || snake[i].X >= max_x || snake[i].Y < 0 || snake[i].Y >= max_y)    end = true;
                         // we go through all the snake to check if the location head is equal to the location of another link of the snake
                         for (int j = 1; j < snake.Count; j++) if (snake[i].X == snake[j].X && snake[i].Y == snake[j].Y)   end = true;
 
                         //If the snake has eaten a prey
                         if (snake[i].X == apple.X && snake[i].Y == apple.Y)
-                    {
-                        //We create a new part whose the location is the last link of the snake
-                        SnakePart part = new SnakePart(snake[snake.Count - 1].X, snake[snake.Count - 1].Y, GRID_X, GRID_Y);
-                        snake.Add(part);
-                        createSnake(part);
-                        //create a new prey
-                        createApple();
+                        {
+                            //We create a new part whose the location is the last link of the snake
+                            SnakePart part = new SnakePart(snake[snake.Count - 1].X, snake[snake.Count - 1].Y, GRID_X, GRID_Y);
+                            snake.Add(part);
+                            viewSnake.createViewPart(part);
+                            //create a new prey
+                            createApple();
+                            //increase the score
+                            score++;
 
-                        //increase the score
-                        score++;
-
-                    }
+                        }
                 }
                 else
                 {
                     snake[i].X = snake[i - 1].X;
                     snake[i].Y = snake[i - 1].Y;
-                    updateSnake(snake[i], snake[i].Vsp);
+                    //update snake view
+                    viewSnake.updateViewSnake();
 
                 }
             }
         }
 
+        /*function to clear the snake */
         public void clearSnake()
         {
-            for (int i = 0; i < snake.Count; i++) snake[i].Vsp.PBox.Hide();
+            viewSnake.clearViewSnake();
         }
+
+        /*function to clear an apple */
+        public void clearApple()
+        {
+            viewApple.clearViewApple();
+        }
+
         /*Getters and Setters*/
         internal List<SnakePart> Snake
         {
             get { return snake; }
             set { snake = value; }
-        }
-
-        public int GRID_X1
-        {
-            get { return GRID_X; }
-        }
-
-        public int GRID_Y1
-        {
-            get { return GRID_Y; }
         }
 
         public int DIR_DOWN1
@@ -193,20 +184,6 @@ namespace Snake
         {
             get { return DIR_RIGHT; }
         }
-
-        public int SIZE_GAME_X1
-        {
-            get { return SIZE_GAME_X; }
-            set { SIZE_GAME_X = value; }
-        }
-
-        public int SIZE_GAME_Y1
-        {
-            get { return SIZE_GAME_Y; }
-            set { SIZE_GAME_Y = value; }
-        }
-
- 
 
         public int Score
         {
@@ -232,10 +209,5 @@ namespace Snake
             set { apple = value; }
         }
 
-        internal viewApple Va
-        {
-            get { return va; }
-            set { va = value; }
-        }
     }
 }

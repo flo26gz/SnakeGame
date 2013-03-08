@@ -149,16 +149,6 @@ namespace Snake
             this.scoreLabel.TabIndex = 2;
             this.scoreLabel.Text = "Score : 0";
             this.scoreLabel.Visible = true;
-            
-            // 
-            // imgSnakePanel
-            // 
-            this.imgSnakePanel.BackColor = System.Drawing.Color.Transparent;
-            this.imgSnakePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imgSnakePanel.BackgroundImage")));
-            this.imgSnakePanel.Location = new System.Drawing.Point(88, 136);
-            this.imgSnakePanel.Name = "imgSnakePanel";
-            this.imgSnakePanel.Size = new System.Drawing.Size(134, 169);
-            this.imgSnakePanel.TabIndex = 7;
             // 
             // snakePanel
             // 
@@ -204,7 +194,9 @@ namespace Snake
         private System.Windows.Forms.Panel mainIntroPanel;
         private System.Windows.Forms.Label SnakeTitleLabel;
         private System.Windows.Forms.Panel imgSnakePanel;
+        //main panel of the game window that contains the score  + the snakePanel
         private System.Windows.Forms.Panel mainGamePanel;
+        //panel that contains our snake and apple (the game)
         private System.Windows.Forms.Panel snakePanel;
         private System.Windows.Forms.Label teamLabel2;
         private System.Windows.Forms.Label teamLabel1;
@@ -213,6 +205,7 @@ namespace Snake
         private System.Windows.Forms.Button rulesButton;
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Timer timer1;
+        //To get the choice of the user at the end of the game(messageBox)
         private DialogResult res;
       
 

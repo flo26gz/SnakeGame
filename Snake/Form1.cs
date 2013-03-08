@@ -36,7 +36,7 @@ namespace Snake
 
         }
 
-
+        /*function to manage timer */
         private void timer1_Tick(object sender, EventArgs e)
         {
             //update the snake
@@ -48,6 +48,7 @@ namespace Snake
             //refresh the score
             this.scoreLabel.Text = "Score : " + game.Score;
         
+            //if game over
             if (game.End == true)
             {
                 this.timer1.Stop();
@@ -56,7 +57,7 @@ namespace Snake
                 if (this.res == DialogResult.Yes)
                 {
                     Controls.Clear();
-                    game.Va.PBox.Hide();
+                    game.clearApple();
                     game.clearSnake();
                     Controls.Add(this.mainIntroPanel);
 
@@ -66,6 +67,8 @@ namespace Snake
              
             
         }
+
+        /*function to manage keyboard event */
         void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             switch (e.KeyChar)

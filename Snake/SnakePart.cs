@@ -5,13 +5,14 @@ using System.Text;
 
 namespace Snake
 {
+    /*This class represents the model of a snake part */
     class SnakePart
     {
         private int x;
         private int y;
         private int sizeX;
         private int sizeY;
-        private viewSnakePart vsp;
+        private viewSnakePart view;
     
 
         public SnakePart(int x, int y, int sizeX, int sizeY)
@@ -21,9 +22,10 @@ namespace Snake
             this.y = y;
             this.sizeX = sizeX;
             this.sizeY = sizeY;
-            vsp = new viewSnakePart(x, y, sizeX, sizeY);
+            
             
         }
+
         /* Getters and setters */
         public int X
         {
@@ -50,10 +52,10 @@ namespace Snake
             set { sizeY = value; }
         }
 
-        internal viewSnakePart Vsp
+        internal viewSnakePart View
         {
-            get { return vsp; }
-            set { vsp = value; }
+            get { return view; }
+            set { view = value; }
         }
 
     }
