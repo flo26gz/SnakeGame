@@ -21,9 +21,9 @@ namespace Snake
         private int SIZE_GAME_Y;
 
         //horizontal size of a grid
-        private const int GRID_X = 16;
+        private const int GRID_X = 20;
         //vertical size of a grid
-        private const int GRID_Y = 14;
+        private const int GRID_Y = 18;
 
         //number max of horizontal grid
         private int max_x;
@@ -79,6 +79,7 @@ namespace Snake
             snake.Add(head);
             //create the view of the head
             viewSnake.createViewPart(head);
+            
             //create food
             viewApple = new viewApple(apple,snakePanel);
             createApple();

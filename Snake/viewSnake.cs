@@ -23,6 +23,11 @@ namespace Snake
         {
             //we instantiate a new viewSnakePart, this object is the view for a pictureBox
             viewSnakePart viewSnakePart = new viewSnakePart(part);
+            if (snake.Count == 1)
+            {
+                viewSnakePart.drawHead();
+                viewSnakePart.PBox.Refresh();
+            }
             //We link this viewSnakePart to our SnakePart ==> very important to update the right pictureBox
             part.View = viewSnakePart;
             //we add this pictureBox to our Panel
@@ -44,5 +49,7 @@ namespace Snake
         {
             for (int i = 0; i < snake.Count; i++) snake[i].View.PBox.Hide();
         }
+
+ 
     }
 }

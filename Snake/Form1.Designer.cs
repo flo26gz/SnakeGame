@@ -37,20 +37,22 @@ namespace Snake
             this.rulesButton = new System.Windows.Forms.Button();
             this.teamLabel2 = new System.Windows.Forms.Label();
             this.teamLabel1 = new System.Windows.Forms.Label();
-            this.scoreLabel = new System.Windows.Forms.Label();
             this.SnakeTitleLabel = new System.Windows.Forms.Label();
             this.imgSnakePanel = new System.Windows.Forms.Panel();
+            this.scoreLabel = new System.Windows.Forms.Label();
             this.mainGamePanel = new System.Windows.Forms.Panel();
             this.snakePanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mainIntroPanel.SuspendLayout();
-            this.snakePanel.SuspendLayout();
             this.mainGamePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainIntroPanel
             // 
             this.mainIntroPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.mainIntroPanel.Controls.Add(this.pictureBox1);
             this.mainIntroPanel.Controls.Add(this.optionButton);
             this.mainIntroPanel.Controls.Add(this.playButton);
             this.mainIntroPanel.Controls.Add(this.rulesButton);
@@ -60,7 +62,7 @@ namespace Snake
             this.mainIntroPanel.Controls.Add(this.imgSnakePanel);
             this.mainIntroPanel.Location = new System.Drawing.Point(-1, -1);
             this.mainIntroPanel.Name = "mainIntroPanel";
-            this.mainIntroPanel.Size = new System.Drawing.Size(626, 594);
+            this.mainIntroPanel.Size = new System.Drawing.Size(737, 500);
             this.mainIntroPanel.TabIndex = 0;
             // 
             // optionButton
@@ -137,6 +139,13 @@ namespace Snake
             this.SnakeTitleLabel.TabIndex = 0;
             this.SnakeTitleLabel.Text = "Snake";
             // 
+            // imgSnakePanel
+            // 
+            this.imgSnakePanel.Location = new System.Drawing.Point(0, 0);
+            this.imgSnakePanel.Name = "imgSnakePanel";
+            this.imgSnakePanel.Size = new System.Drawing.Size(200, 100);
+            this.imgSnakePanel.TabIndex = 7;
+            // 
             // scoreLabel
             // 
             this.scoreLabel.AutoSize = true;
@@ -145,18 +154,9 @@ namespace Snake
             this.scoreLabel.ForeColor = System.Drawing.Color.Green;
             this.scoreLabel.Location = new System.Drawing.Point(28, 550);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(220, 29);
+            this.scoreLabel.Size = new System.Drawing.Size(123, 29);
             this.scoreLabel.TabIndex = 2;
             this.scoreLabel.Text = "Score : 0";
-            this.scoreLabel.Visible = true;
-            // 
-            // snakePanel
-            // 
-            this.snakePanel.BackColor = System.Drawing.Color.Gray;
-            this.snakePanel.Location = new System.Drawing.Point(-1, 0);
-            this.snakePanel.Name = "snakePanel";
-            this.snakePanel.Size = new System.Drawing.Size(560, 490);
-            this.snakePanel.TabIndex = 0; 
             // 
             // mainGamePanel
             // 
@@ -167,17 +167,33 @@ namespace Snake
             this.mainGamePanel.Name = "mainGamePanel";
             this.mainGamePanel.Size = new System.Drawing.Size(626, 594);
             this.mainGamePanel.TabIndex = 0;
-   
+            // 
+            // snakePanel
+            // 
+            this.snakePanel.BackColor = System.Drawing.Color.Gray;
+            this.snakePanel.Location = new System.Drawing.Point(-1, 0);
+            this.snakePanel.Name = "snakePanel";
+            this.snakePanel.Size = new System.Drawing.Size(560, 504);
+            this.snakePanel.TabIndex = 0;
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(58, 175);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(126, 93);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 587);
+            this.ClientSize = new System.Drawing.Size(734, 495);
             this.Controls.Add(this.mainIntroPanel);
             this.KeyPreview = true;
             this.Name = "Form1";
@@ -185,6 +201,8 @@ namespace Snake
             this.mainIntroPanel.ResumeLayout(false);
             this.mainIntroPanel.PerformLayout();
             this.mainGamePanel.ResumeLayout(false);
+            this.mainGamePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -207,6 +225,7 @@ namespace Snake
         private System.Windows.Forms.Timer timer1;
         //To get the choice of the user at the end of the game(messageBox)
         private DialogResult res;
+        private PictureBox pictureBox1;
       
 
 

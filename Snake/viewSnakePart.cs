@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Snake
 {
@@ -9,6 +11,7 @@ namespace Snake
     class viewSnakePart
     {
         private System.Windows.Forms.PictureBox pBox;
+      
 
         /*Constructor */
         public viewSnakePart(SnakePart part)
@@ -16,6 +19,8 @@ namespace Snake
     
             this.pBox = new System.Windows.Forms.PictureBox();
             this.pBox.BackColor = System.Drawing.Color.Black;
+         
+            //pBox.Size = pBox.BackgroundImage.Size;
             this.pBox.Location = new System.Drawing.Point(part.X*part.SizeX, part.Y*part.SizeY);
             this.pBox.Margin = new System.Windows.Forms.Padding(4);
             this.pBox.Name = "pBox";
@@ -23,6 +28,15 @@ namespace Snake
             this.pBox.TabIndex = 0;
             this.pBox.TabStop = false;
             
+        }
+
+        public void drawHead(){
+            //transparent color
+            this.pBox.BackColor = Color.Transparent;
+            //set image background
+            this.pBox.BackgroundImage = Image.FromFile("C:\\Users\\Florian Ganzin\\Pictures\\snakeHead.png");
+            //center image
+            this.pBox.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         public System.Windows.Forms.PictureBox PBox
