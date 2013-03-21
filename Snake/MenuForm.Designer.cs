@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 namespace Snake
 {
-    partial class Form1
+    partial class MenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@ namespace Snake
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.mainIntroPanel = new System.Windows.Forms.Panel();
             this.menuPanel = new System.Windows.Forms.Panel();
             this.sousMenu2Panel = new System.Windows.Forms.Panel();
@@ -44,8 +43,6 @@ namespace Snake
             this.teamLabel2 = new System.Windows.Forms.Label();
             this.teamLabel1 = new System.Windows.Forms.Label();
             this.SnakeTitleLabel = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.contentRulesLabel = new System.Windows.Forms.Label();
             this.mainIntroPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.sousMenu2Panel.SuspendLayout();
@@ -90,7 +87,6 @@ namespace Snake
             // sousMenu3Panel
             // 
             this.sousMenu3Panel.BackColor = System.Drawing.Color.Transparent;
-            this.sousMenu3Panel.Controls.Add(this.contentRulesLabel);
             this.sousMenu3Panel.Controls.Add(this.playButton);
             this.sousMenu3Panel.Controls.Add(this.optionButton);
             this.sousMenu3Panel.Location = new System.Drawing.Point(14, 13);
@@ -110,7 +106,7 @@ namespace Snake
             this.playButton.Text = "Play";
             this.playButton.UseVisualStyleBackColor = false;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
-            this.playButton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+           
             // 
             // optionButton
             // 
@@ -219,31 +215,14 @@ namespace Snake
             this.SnakeTitleLabel.TabIndex = 0;
             this.SnakeTitleLabel.Text = "Snake";
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // contentRulesLabel
-            // 
-            this.contentRulesLabel.AutoSize = true;
-            this.contentRulesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contentRulesLabel.ForeColor = System.Drawing.Color.White;
-            this.contentRulesLabel.Location = new System.Drawing.Point(3, 1);
-            this.contentRulesLabel.Name = "contentRulesLabel";
-            this.contentRulesLabel.Size = new System.Drawing.Size(365, 160);
-            this.contentRulesLabel.TabIndex = 7;
-            this.contentRulesLabel.Text = "Rules :\r\n\r\n- The goal of the game is to have the highest score\r\n\r\n- If you touch " +
-                "the walls, this is the end of the game\r\n\r\nGood Luck !\r\n\r\n";
-            this.contentRulesLabel.Visible = false;
-            // 
-            // Form1
+            // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 495);
+            this.ClientSize = new System.Drawing.Size(734, 502);
             this.Controls.Add(this.mainIntroPanel);
             this.KeyPreview = true;
-            this.Name = "Form1";
+            this.Name = "MenuForm";
             this.Text = "Snake";
             this.mainIntroPanel.ResumeLayout(false);
             this.mainIntroPanel.PerformLayout();
@@ -251,7 +230,6 @@ namespace Snake
             this.menuPanel.PerformLayout();
             this.sousMenu2Panel.ResumeLayout(false);
             this.sousMenu3Panel.ResumeLayout(false);
-            this.sousMenu3Panel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -266,7 +244,6 @@ namespace Snake
         private System.Windows.Forms.Label teamLabel1;
         private System.Windows.Forms.Button optionButton;
         private System.Windows.Forms.Button playButton;
-        private System.Windows.Forms.Timer timer1;
         private Panel menuPanel;
         private Panel panel1;
         private Label menuLabel;
@@ -275,7 +252,7 @@ namespace Snake
         private Label gameLabel;
         private Panel sousMenu2Panel;
         private Panel sousMenu3Panel;
-        private Label contentRulesLabel;
+      
       
 
 

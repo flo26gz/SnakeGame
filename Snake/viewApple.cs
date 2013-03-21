@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Snake
 {
@@ -25,7 +26,6 @@ namespace Snake
             this.pBox.TabIndex = 0;
             this.pBox.TabStop = false;
             this.pBox.Visible=true;
-
             snakePanel.Controls.Add(pBox);
             
         }
@@ -45,7 +45,51 @@ namespace Snake
             pBox.Top = apple.Y *apple.SizeY;
             pBox.Width = apple.SizeX;
             pBox.Height = apple.SizeY;
+            if (apple.Type == 1) drawRedApple();
+            else if (apple.Type == 2) drawGoldApple();
+            else drawPurpleApple();
         }
+
+        public void drawRedApple()
+        {
+            //transparent color
+            this.pBox.BackColor = Color.Transparent;
+            //set image background
+            this.pBox.BackgroundImage = Image.FromFile("C:\\Users\\Florian Ganzin\\Pictures\\red_apple.png");
+            //center image
+            this.pBox.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        public void drawGoldApple()
+        {
+            //transparent color
+            this.pBox.BackColor = Color.Transparent;
+            //set image background
+            this.pBox.BackgroundImage = Image.FromFile("C:\\Users\\Florian Ganzin\\Pictures\\gold_apple.png");
+            //center image
+            this.pBox.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        public void drawPurpleApple()
+        {
+            //transparent color
+            this.pBox.BackColor = Color.Transparent;
+            //set image background
+            this.pBox.BackgroundImage = Image.FromFile("C:\\Users\\Florian Ganzin\\Pictures\\purple_apple.png");
+            //center image
+            this.pBox.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        public void hideApple()
+        {
+            snakePanel.Controls.Remove(pBox);
+        }
+
+        public void displayApple()
+        {
+            snakePanel.Controls.Add(pBox);
+        }
+
         /*Clear the apple if we want to do another game */
         public void clearViewApple()
         {

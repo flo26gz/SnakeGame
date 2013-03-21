@@ -13,12 +13,8 @@ namespace Snake
         private int y;
         private int sizeX;
         private int sizeY;
-       
-       
-        public Apple()
-        {
-          
-        }
+        private int type;//1 red apple , 2 gold apple 3 purple apple
+     
 
         /* Getters and setters */
         public int X
@@ -45,5 +41,10 @@ namespace Snake
             set { sizeX = value; }
         }
 
+        public int Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
     }
 }
