@@ -54,9 +54,9 @@ namespace Snake
         private Boolean end;
         //count
         private int nb_red_apple;
-
         private int nb_gold_apple;
         private int nb_purple_apple;
+        int wait;
     
         /*Constructor */
         public Game(int sizex, int sizey, Panel panel)
@@ -86,6 +86,7 @@ namespace Snake
            
             end = false;
             score = 0;
+            wait = 0;
            
             //clear the list if we do another game
             snake.Clear();
@@ -245,6 +246,7 @@ namespace Snake
         /*function to test if an something happened or just move the snake */
         public void check()
         {
+           
             //start by the last part of the snake because the last link will have the location of the link in front of him
             for (int i = snake.Count - 1; i >= 0; i--)
             {
@@ -276,21 +278,28 @@ namespace Snake
                                 viewSnake.createViewPart(part);
                                
 
-                                if (score != 0 && nb_red_apple % 3 == 0) createPurpleApple();
+                               
                                 //increase the score
                                 if (snake[i].X == apple.X && snake[i].Y == apple.Y)
                                 {
                                     score++;
                                     nb_red_apple++;
+                                    wait++;
                                 }
-                                if (snake[i].X == goldApple.X && snake[i].Y == goldApple.Y)
+                                //gold
+                                else
                                 {
                                     score += 5;
                                     nb_gold_apple++;
                                     hideGoldApple();
                                 }
+                                if (wait != 0 && wait % 3 == 0) createPurpleApple();
                                 //create a new prey
-                                if (score != 0 && nb_red_apple % 6 == 0) createGoldApple();
+                                if (wait!=0 && wait % 6 == 0)
+                                {
+                                    createGoldApple();
+                                    wait = 0;
+                                }
                                 createApple();
                                
 
