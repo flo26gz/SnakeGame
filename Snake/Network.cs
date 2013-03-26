@@ -11,7 +11,7 @@ namespace Snake
 {
     class Network
     {
-        private Thread thListener;
+        private Thread  thListener;
         private Thread thSender;
         private UdpClient listenclient;
         private UdpClient sendClient;
