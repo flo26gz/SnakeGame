@@ -27,11 +27,6 @@ namespace Snake
             hostPlayer = "nothing ";
             opponentPlayer = "nothing";
 
-            listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, 1);
-            listenSocket.Bind(new IPEndPoint(IPAddress.Any, 50000));
-            listenSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.AddMembership, new MulticastOption(IPAddress.Parse("239.1.1.42")));
-
             listenSocketClient = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             listenSocketClient.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, 1);
             listenSocketClient.Bind(new IPEndPoint(IPAddress.Any, 51000));
@@ -42,30 +37,39 @@ namespace Snake
         public void createMatch()
         {
             hostPlayer = host.Name + "," + host.Ip;
-              
-           
+
+            listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 5000);
+            //listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, 1);
+            listenSocket.Bind(ipep);
+
+            IPAddress ip = IPAddress.Parse("224.5.6.7");
+            listenSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.AddMembership, new MulticastOption(ip, IPAddress.Any));
+
+            //listenSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.AddMembership, new MulticastOption(IPAddress.Parse("239.1.1.42")));
             thListener = new Thread(new ThreadStart(listen));
             thListener.IsBackground = true;
             thListener.Start();
 
-            sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            /*sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             EndPoint multicastendpoint = new IPEndPoint(IPAddress.Parse("239.1.1.42"), 51000);
             String message = host.Name + "," + host.Ip;
             sendSocket.SendTo(Encoding.Default.GetBytes(message), message.Length, SocketFlags.None, multicastendpoint);
-            sendSocket.Close();
+            sendSocket.Close();*/
         }
 
         public void listen()
         {
-            Console.WriteLine("testdjshhds");
+           
                 byte[] buffer = new byte[1024];
                 int count  = listenSocket.Receive(buffer);
                 opponentPlayer = Encoding.Default.GetString(buffer,0,count);
-                MessageBox.Show(opponentPlayer, opponentPlayer, MessageBoxButtons.YesNo);
-                listenSocket.Close();
+                Console.WriteLine(opponentPlayer);
+              //  MessageBox.Show(opponentPlayer, opponentPlayer, MessageBoxButtons.YesNo);
+              //  listenSocket.Close();
            
         }
-
+        /*
         public void listen2()
         {
            
@@ -77,21 +81,52 @@ namespace Snake
             listenSocketClient.Close();
 
         }
-
+        */
         public void joinMatch()
         {
+            IPAddress ip;
+			try 
+			{
+				
+				ip=IPAddress.Parse("224.5.6.7");
+				
+				sendSocket=new Socket(AddressFamily.InterNetwork, 
+								SocketType.Dgram, ProtocolType.Udp);
+				
+				sendSocket.SetSocketOption(SocketOptionLevel.IP, 
+					SocketOptionName.AddMembership, new MulticastOption(ip));
 
+				sendSocket.SetSocketOption(SocketOptionLevel.IP, 
+					SocketOptionName.MulticastTimeToLive, 1);
+			String message = host.Name + "," + host.Ip;
+
+				IPEndPoint ipep=new IPEndPoint(IPAddress.Parse("224.5.6.7"),5000);
+				
+				Console.WriteLine("Connecting...");
+
+				sendSocket.Connect(ipep);
+               
+					sendSocket.Send(Encoding.Default.GetBytes(message),message.Length,SocketFlags.None);
+    
+
+				Console.WriteLine("Closing Connection...");
+				sendSocket.Close();
+			} 
+			catch(System.Exception e) { Console.Error.WriteLine(e.Message); }
+		
+        }
+        /*
             sendSocketClient = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             EndPoint multicastendpoint = new IPEndPoint(IPAddress.Parse("239.1.1.42"), 50000);
             String message = host.Name + "," + host.Ip;
             sendSocketClient.SendTo(Encoding.Default.GetBytes(message), message.Length, SocketFlags.None, multicastendpoint);
-            sendSocketClient.Close();
-
+           // sendSocketClient.Close();
+         * */
+            /*
             thListener = new Thread(new ThreadStart(listen2));
             thListener.IsBackground = true;
             thListener.Start();
-            
-        }
+            */
 
         public String HostPlayer
         {
