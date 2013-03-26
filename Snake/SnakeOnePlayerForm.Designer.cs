@@ -29,26 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SnakeOnePlayerForm));
             this.snakePanel = new System.Windows.Forms.Panel();
             this.toolPanel = new System.Windows.Forms.Panel();
+            this.goldLabel = new System.Windows.Forms.Label();
+            this.appleLabel = new System.Windows.Forms.Label();
+            this.statisticLabel = new System.Windows.Forms.Label();
             this.scoreLabel = new System.Windows.Forms.Label();
             this.playerLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.leftBorder = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rightBorder = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.bottomBorder = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.topBorder = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.statisticLabel = new System.Windows.Forms.Label();
-            this.appleLabel = new System.Windows.Forms.Label();
-            this.goldLabel = new System.Windows.Forms.Label();
+            this.bottomBorder = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+            this.rightBorder = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+            this.leftBorder = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.toolPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // snakePanel
             // 
-            this.snakePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("snakePanel.BackgroundImage")));
+            this.snakePanel.BackgroundImage = global::Snake.Properties.Resources.green_back;
             this.snakePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.snakePanel.Location = new System.Drawing.Point(184, 5);
             this.snakePanel.Name = "snakePanel";
@@ -68,6 +67,39 @@
             this.toolPanel.Name = "toolPanel";
             this.toolPanel.Size = new System.Drawing.Size(178, 515);
             this.toolPanel.TabIndex = 1;
+            // 
+            // goldLabel
+            // 
+            this.goldLabel.AutoSize = true;
+            this.goldLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goldLabel.ForeColor = System.Drawing.Color.DarkGreen;
+            this.goldLabel.Location = new System.Drawing.Point(16, 227);
+            this.goldLabel.Name = "goldLabel";
+            this.goldLabel.Size = new System.Drawing.Size(128, 20);
+            this.goldLabel.TabIndex = 4;
+            this.goldLabel.Text = "Gold Apple :  0";
+            // 
+            // appleLabel
+            // 
+            this.appleLabel.AutoSize = true;
+            this.appleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appleLabel.ForeColor = System.Drawing.Color.DarkGreen;
+            this.appleLabel.Location = new System.Drawing.Point(16, 184);
+            this.appleLabel.Name = "appleLabel";
+            this.appleLabel.Size = new System.Drawing.Size(85, 20);
+            this.appleLabel.TabIndex = 3;
+            this.appleLabel.Text = "Apple :  0";
+            // 
+            // statisticLabel
+            // 
+            this.statisticLabel.AutoSize = true;
+            this.statisticLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.statisticLabel.Location = new System.Drawing.Point(16, 128);
+            this.statisticLabel.Name = "statisticLabel";
+            this.statisticLabel.Size = new System.Drawing.Size(91, 24);
+            this.statisticLabel.TabIndex = 2;
+            this.statisticLabel.Text = "Statictics";
             // 
             // scoreLabel
             // 
@@ -109,21 +141,13 @@
             this.shapeContainer1.TabIndex = 2;
             this.shapeContainer1.TabStop = false;
             // 
-            // leftBorder
+            // topBorder
             // 
-            this.leftBorder.BackColor = System.Drawing.Color.Black;
-            this.leftBorder.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-            this.leftBorder.Location = new System.Drawing.Point(178, -2);
-            this.leftBorder.Name = "leftBorder";
-            this.leftBorder.Size = new System.Drawing.Size(7, 514);
-            // 
-            // rightBorder
-            // 
-            this.rightBorder.BackColor = System.Drawing.Color.Black;
-            this.rightBorder.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-            this.rightBorder.Location = new System.Drawing.Point(744, 0);
-            this.rightBorder.Name = "rightBorder";
-            this.rightBorder.Size = new System.Drawing.Size(9, 517);
+            this.topBorder.BackColor = System.Drawing.Color.Black;
+            this.topBorder.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+            this.topBorder.Location = new System.Drawing.Point(178, 0);
+            this.topBorder.Name = "topBorder";
+            this.topBorder.Size = new System.Drawing.Size(568, 5);
             // 
             // bottomBorder
             // 
@@ -133,46 +157,21 @@
             this.bottomBorder.Name = "bottomBorder";
             this.bottomBorder.Size = new System.Drawing.Size(572, 5);
             // 
-            // topBorder
+            // rightBorder
             // 
-            this.topBorder.BackColor = System.Drawing.Color.Black;
-            this.topBorder.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-            this.topBorder.Location = new System.Drawing.Point(178, 0);
-            this.topBorder.Name = "topBorder";
-            this.topBorder.Size = new System.Drawing.Size(568, 5);
+            this.rightBorder.BackColor = System.Drawing.Color.Black;
+            this.rightBorder.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+            this.rightBorder.Location = new System.Drawing.Point(744, 0);
+            this.rightBorder.Name = "rightBorder";
+            this.rightBorder.Size = new System.Drawing.Size(9, 517);
             // 
-            // statisticLabel
+            // leftBorder
             // 
-            this.statisticLabel.AutoSize = true;
-            this.statisticLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statisticLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.statisticLabel.Location = new System.Drawing.Point(16, 128);
-            this.statisticLabel.Name = "statisticLabel";
-            this.statisticLabel.Size = new System.Drawing.Size(91, 24);
-            this.statisticLabel.TabIndex = 2;
-            this.statisticLabel.Text = "Statictics";
-            // 
-            // appleLabel
-            // 
-            this.appleLabel.AutoSize = true;
-            this.appleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appleLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.appleLabel.Location = new System.Drawing.Point(16, 184);
-            this.appleLabel.Name = "appleLabel";
-            this.appleLabel.Size = new System.Drawing.Size(85, 20);
-            this.appleLabel.TabIndex = 3;
-            this.appleLabel.Text = "Apple :  0";
-            // 
-            // goldLabel
-            // 
-            this.goldLabel.AutoSize = true;
-            this.goldLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.goldLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.goldLabel.Location = new System.Drawing.Point(16, 227);
-            this.goldLabel.Name = "goldLabel";
-            this.goldLabel.Size = new System.Drawing.Size(128, 20);
-            this.goldLabel.TabIndex = 4;
-            this.goldLabel.Text = "Gold Apple :  0";
+            this.leftBorder.BackColor = System.Drawing.Color.Black;
+            this.leftBorder.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+            this.leftBorder.Location = new System.Drawing.Point(178, -2);
+            this.leftBorder.Name = "leftBorder";
+            this.leftBorder.Size = new System.Drawing.Size(7, 514);
             // 
             // SnakeOnePlayerForm
             // 

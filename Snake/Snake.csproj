@@ -46,13 +46,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateMatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateMatchForm.Designer.cs">
+      <DependentUpon>CreateMatchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Game.cs" />
     <Compile Include="Apple.cs" />
+    <Compile Include="JoinMatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JoinMatchForm.Designer.cs">
+      <DependentUpon>JoinMatchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lobby.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lobby.Designer.cs">
+      <DependentUpon>Lobby.cs</DependentUpon>
+    </Compile>
     <Compile Include="NamePlayerUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="NamePlayerUserControl.Designer.cs">
       <DependentUpon>NamePlayerUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Network.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="PseudoPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PseudoPlayer.Designer.cs">
+      <DependentUpon>PseudoPlayer.cs</DependentUpon>
     </Compile>
     <Compile Include="SnakeOnePlayerForm.cs">
       <SubType>Form</SubType>
@@ -72,6 +98,15 @@
     <Compile Include="viewApple.cs" />
     <Compile Include="viewSnake.cs" />
     <Compile Include="viewSnakePart.cs" />
+    <EmbeddedResource Include="CreateMatchForm.resx">
+      <DependentUpon>CreateMatchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JoinMatchForm.resx">
+      <DependentUpon>JoinMatchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lobby.resx">
+      <DependentUpon>Lobby.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,7 +121,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PseudoPlayer.resx">
+      <DependentUpon>PseudoPlayer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SnakeOnePlayerForm.resx">
       <DependentUpon>SnakeOnePlayerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +138,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\snakeHead.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\snakeHead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red_apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\purple_apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gold_apple.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

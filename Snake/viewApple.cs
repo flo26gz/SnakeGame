@@ -55,7 +55,8 @@ namespace Snake
             //transparent color
             this.pBox.BackColor = Color.Transparent;
             //set image background
-            this.pBox.BackgroundImage = Image.FromFile("C:\\Users\\Florian Ganzin\\Pictures\\red_apple.png");
+            this.pBox.BackgroundImage = global::Snake.Properties.Resources.red_apple;
+            this.pBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             //center image
             this.pBox.BackgroundImageLayout = ImageLayout.Stretch;
         }
@@ -65,7 +66,8 @@ namespace Snake
             //transparent color
             this.pBox.BackColor = Color.Transparent;
             //set image background
-            this.pBox.BackgroundImage = Image.FromFile("C:\\Users\\Florian Ganzin\\Pictures\\gold_apple.png");
+            this.pBox.BackgroundImage = global::Snake.Properties.Resources.gold_apple;
+            this.pBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             //center image
             this.pBox.BackgroundImageLayout = ImageLayout.Stretch;
         }
@@ -75,7 +77,8 @@ namespace Snake
             //transparent color
             this.pBox.BackColor = Color.Transparent;
             //set image background
-            this.pBox.BackgroundImage = Image.FromFile("C:\\Users\\Florian Ganzin\\Pictures\\purple_apple.png");
+            this.pBox.BackgroundImage = global::Snake.Properties.Resources.purple_apple;
+            this.pBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             //center image
             this.pBox.BackgroundImageLayout = ImageLayout.Stretch;
         }

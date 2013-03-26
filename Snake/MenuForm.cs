@@ -14,7 +14,7 @@ namespace Snake
     {
         private System.Windows.Forms.Label contentRulesLabel;
         private SnakeOnePlayerForm snakeOnePlayer;
-        
+        private PseudoPlayer pp;
 
         public MenuForm()
         {
@@ -83,6 +83,12 @@ namespace Snake
 
         }
 
+        private void multiButton_Click(object sender, EventArgs e)
+        {
+            pp = new PseudoPlayer();
+            pp.ShowDialog();
+        }
+
         private void removeColorBackground(object sender, EventArgs e)
         {
             this.gameLabel.BackColor = System.Drawing.Color.Transparent;
@@ -92,6 +98,8 @@ namespace Snake
         {
             this.gameLabel.BackColor = System.Drawing.Color.DarkGreen;
         }
+
+       
 
 
     }

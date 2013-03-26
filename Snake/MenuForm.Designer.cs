@@ -43,6 +43,7 @@ namespace Snake
             this.teamLabel2 = new System.Windows.Forms.Label();
             this.teamLabel1 = new System.Windows.Forms.Label();
             this.SnakeTitleLabel = new System.Windows.Forms.Label();
+            this.multiButton = new System.Windows.Forms.Button();
             this.mainIntroPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.sousMenu2Panel.SuspendLayout();
@@ -87,6 +88,7 @@ namespace Snake
             // sousMenu3Panel
             // 
             this.sousMenu3Panel.BackColor = System.Drawing.Color.Transparent;
+            this.sousMenu3Panel.Controls.Add(this.multiButton);
             this.sousMenu3Panel.Controls.Add(this.playButton);
             this.sousMenu3Panel.Controls.Add(this.optionButton);
             this.sousMenu3Panel.Location = new System.Drawing.Point(14, 13);
@@ -103,10 +105,9 @@ namespace Snake
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(165, 40);
             this.playButton.TabIndex = 4;
-            this.playButton.Text = "Play";
+            this.playButton.Text = "Solo";
             this.playButton.UseVisualStyleBackColor = false;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
-           
             // 
             // optionButton
             // 
@@ -215,6 +216,19 @@ namespace Snake
             this.SnakeTitleLabel.TabIndex = 0;
             this.SnakeTitleLabel.Text = "Snake";
             // 
+            // multiButton
+            // 
+            this.multiButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.multiButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.multiButton.ForeColor = System.Drawing.Color.Green;
+            this.multiButton.Location = new System.Drawing.Point(5, 129);
+            this.multiButton.Name = "multiButton";
+            this.multiButton.Size = new System.Drawing.Size(165, 40);
+            this.multiButton.TabIndex = 7;
+            this.multiButton.Text = "Multi";
+            this.multiButton.UseVisualStyleBackColor = false;
+            this.multiButton.Click += new System.EventHandler(this.multiButton_Click);
+            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,6 +266,7 @@ namespace Snake
         private Label gameLabel;
         private Panel sousMenu2Panel;
         private Panel sousMenu3Panel;
+        private Button multiButton;
       
       
 

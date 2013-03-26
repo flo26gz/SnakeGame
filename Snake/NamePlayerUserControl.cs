@@ -25,6 +25,7 @@ namespace Snake
         public NamePlayerUserControl()
         {
             InitializeComponent();
+            
         }
 
 
@@ -67,5 +68,6 @@ namespace Snake
             OnCancelButtonClick(e);
         }
 
+        public TextBox getTB() { return this.textBoxName; }
     }
 }

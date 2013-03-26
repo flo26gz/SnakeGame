@@ -34,7 +34,8 @@ namespace Snake
             //transparent color
             this.pBox.BackColor = Color.Transparent;
             //set image background
-            this.pBox.BackgroundImage = Image.FromFile("C:\\Users\\Florian Ganzin\\Pictures\\snakeHead.png");
+            this.pBox.BackgroundImage = global::Snake.Properties.Resources.snakeHead;
+            this.pBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             //center image
             this.pBox.BackgroundImageLayout = ImageLayout.Stretch;
         }
