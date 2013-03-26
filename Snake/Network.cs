@@ -39,11 +39,11 @@ namespace Snake
             hostPlayer = host.Name + "," + host.Ip;
 
             listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 5000);
+            IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 5555);
             //listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, 1);
             listenSocket.Bind(ipep);
 
-            IPAddress ip = IPAddress.Parse("224.5.6.7");
+            IPAddress ip = IPAddress.Parse("239.1.1.42");
             listenSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.AddMembership, new MulticastOption(ip, IPAddress.Any));
 
             //listenSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.AddMembership, new MulticastOption(IPAddress.Parse("239.1.1.42")));
@@ -88,7 +88,7 @@ namespace Snake
 			try 
 			{
 				
-				ip=IPAddress.Parse("224.5.6.7");
+				ip=IPAddress.Parse("239.1.1.42");
 				
 				sendSocket=new Socket(AddressFamily.InterNetwork, 
 								SocketType.Dgram, ProtocolType.Udp);
@@ -99,8 +99,7 @@ namespace Snake
 				sendSocket.SetSocketOption(SocketOptionLevel.IP, 
 					SocketOptionName.MulticastTimeToLive, 1);
 			String message = host.Name + "," + host.Ip;
-
-				IPEndPoint ipep=new IPEndPoint(IPAddress.Parse("224.5.6.7"),5000);
+				IPEndPoint ipep=new IPEndPoint(IPAddress.Parse("239.1.1.42"),5555);
 				
 				Console.WriteLine("Connecting...");
 
