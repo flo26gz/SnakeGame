@@ -29,13 +29,6 @@ namespace Snake
             host = new Player(name);
             hostPlayer = "nothing ";
             opponentPlayer = "nothing";
-            //local = new IPEndPoint(IPAddress.Loopback, 6000);
-            //local2 = new IPEndPoint(IPAddress.Loopback, 6005);
-            //listenclient = new UdpClient();
-           // listenclient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-           // sendClient = new UdpClient();
-           // sendClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-          
             
         }
 
